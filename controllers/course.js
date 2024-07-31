@@ -59,28 +59,37 @@ export const deleteAllCourses = async (req, res) => {
 export const getPaidCourses = async (req, res) => {
   try {
     const { email } = req.query;
+    
+
     const paidCourses = await PaidCourses.findOne({ email });
     
+
     if (!paidCourses) {
       return res.status(404).json({ message: 'No paid courses found for the provided email' });
     }
-  
-    const subcourseIds = paidCourses.course_ids;
+
+    const subcourseIds = paidCourses.course_ids.map(id => id.toString());
+
     const courseNames = [];
     const courses = await Course.find();
+    
+
     for (const course of courses) {
-        for (const subcourse of course.courses) {
-            if (subcourseIds.includes(subcourse._id.toString())) {
-                courseNames.push(subcourse.course);
-            }
+      for (const subcourse of course.courses) {
+        if (subcourseIds.includes(subcourse._id.toString())) {
+          courseNames.push(subcourse.course);
         }
+      }
     }
+
+    console.log("Course Names:", courseNames);
     res.json({ courseNames });
   } catch (error) {
-    console.error(error);
+    console.error("Error:", error);
     res.status(500).json({ message: 'Internal server error' });
   }
-}
+};
+
 
 export const getSubCourses = async (req, res) => {
   const { id } = req.params;

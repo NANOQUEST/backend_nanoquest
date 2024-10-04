@@ -54,6 +54,10 @@ app.use("/course", courseRoutes);
 app.use("/enroll", enrollRoutes);
 app.use("/contactus", contactusRoutes);
 
+app.get("/test", (req, res) => {
+    res.send("test route");
+});
+
 // Razorpay order creation endpoint
 app.post("/order", async (req, res) => {
     try {

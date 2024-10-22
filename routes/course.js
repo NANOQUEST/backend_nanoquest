@@ -1,22 +1,31 @@
-import express from 'express';
-import { getAllCourses, getCourseById, addCourse,deleteAllCourses, getPaidCourses,getSubCourses } from '../controllers/course.js';
+import express from "express";
+import {
+    getAllCourses,
+    getCourseById,
+    addCourse,
+    deleteAllCourses,
+    getPaidCourses,
+    getSubCourses,
+} from "../controllers/course.js";
 
 const router = express.Router();
 
 // Route to get all courses
-router.get('/getallcourses', getAllCourses);
+router.get("/", getAllCourses);
 
 // Route to get a course by ID
-router.get('/getcoursebyid/:id', getCourseById);
+router.get("/:id", getCourseById);
 
 // Route to add a new course
-router.post('/addcourse', addCourse);
+router.post("/", addCourse);
 
-router.post('/addcourses', addCourse);
+// Route to delete all courses
+router.delete("/", deleteAllCourses);
 
-router.delete('/deleteallcourses', deleteAllCourses);
+// Route to get paid courses
+router.get("/paid", getPaidCourses);
 
-router.get('/getpaidcourses',getPaidCourses);
+// Route to get subcourses
+router.get("/subcourses/:id", getSubCourses);
 
-router.get('/getsubcourses/:id',getSubCourses);
 export default router;

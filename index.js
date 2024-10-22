@@ -7,11 +7,12 @@ import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 // Importing routes
-import userRoutes from "./routes/auth.js";
+import userRoutes from "./routes/user.js";
 import courseRoutes from "./routes/course.js";
 import enrollRoutes from "./routes/enroll.js";
 import contactusRoutes from "./routes/contact.js";
-import users from "./models/auth.js";
+import users from "./models/user.js";
+import course from "./models/course.js";
 
 dotenv.config();
 
@@ -49,13 +50,20 @@ app.use(
 );
 
 // Routes
-app.use("/user", userRoutes);
-app.use("/course", courseRoutes);
+app.use("/users", userRoutes);
+app.use("/courses", courseRoutes);
 app.use("/enroll", enrollRoutes);
 app.use("/contactus", contactusRoutes);
 
 app.get("/test", (req, res) => {
     res.send("test route");
+    course.find({}, (err, data) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(data);
+        }
+    });
 });
 
 // Razorpay order creation endpoint
@@ -126,5 +134,5 @@ mongoose
 
 // Start the server
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`Server running on http://localhost:${PORT}`);
 });

@@ -1,15 +1,22 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const courseSchema = new mongoose.Schema({
-  id: Number,
-  category:String,
-  imgUrl:String,
-  courses: [{
-    course: String,
-    price_in_rupees: Number,
-  }],
+const skillSchema = new mongoose.Schema({
+    category: { type: String, required: true },
+    imgUrl: { type: String },
+    skills: [
+        {
+            name: { type: String, required: true },
+            items: [
+                {
+                    title: { type: String, required: true },
+                    description: { type: String, required: true },
+                    price: { type: Number, required: true },
+                },
+            ],
+        },
+    ],
 });
 
-const Course = mongoose.model('Course', courseSchema);
+const Skill = mongoose.model("skill", skillSchema);
 
-export default Course;
+export default Skill;

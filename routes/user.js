@@ -5,11 +5,13 @@ import {
     resetpassword,
     forgotpassword,
     userRegister,
+    getUserProfile,
 } from "../controllers/user.js";
 import { contactus } from "../controllers/contact.js";
 
 const router = express.Router();
 
+router.get("/", getUserProfile);
 router.post("/signup", signup);
 router.post("/login", login);
 router.post("/register", userRegister);

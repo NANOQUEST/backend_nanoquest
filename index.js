@@ -33,6 +33,7 @@ const allowedOrigins = [
     "http://localhost:3000",
     "https://www.nanoquesttech.in",
     "https://llp-qxsy.onrender.com",
+    "https://backend-nanoquest.onrender.com",
     "http://localhost:5000",
 ];
 

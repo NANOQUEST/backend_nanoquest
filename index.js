@@ -8,11 +8,12 @@ import path from "path";
 import { fileURLToPath } from "url";
 // Importing routes
 import userRoutes from "./routes/user.js";
-import courseRoutes from "./routes/course.js";
+import skillsRoutes from "./routes/skill.js";
 import enrollRoutes from "./routes/enroll.js";
 import contactusRoutes from "./routes/contact.js";
 import users from "./models/user.js";
-import course from "./models/course.js";
+import Skill from "./models/skill.js";
+import Skills from "./models/skill.js";
 
 dotenv.config();
 
@@ -51,20 +52,9 @@ app.use(
 
 // Routes
 app.use("/users", userRoutes);
-app.use("/courses", courseRoutes);
+app.use("/skills", skillsRoutes);
 app.use("/enroll", enrollRoutes);
 app.use("/contactus", contactusRoutes);
-
-app.get("/test", (req, res) => {
-    res.send("test route");
-    course.find({}, (err, data) => {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(data);
-        }
-    });
-});
 
 // Razorpay order creation endpoint
 app.post("/order", async (req, res) => {
@@ -131,6 +121,17 @@ mongoose
     })
     .then(() => console.log("Connected to MongoDB"))
     .catch((err) => console.error("MongoDB connection error:", err));
+
+app.get("/test", (req, res) => {
+    res.send("test route");
+    Skills.find({}, (err, data) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(data);
+        }
+    });
+});
 
 // Start the server
 app.listen(PORT, () => {

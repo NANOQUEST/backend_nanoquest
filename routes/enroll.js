@@ -7,7 +7,7 @@ import {
     removeCourse,
     createPaidCourses,
 } from "../controllers/enroll.js";
-import { getPaidCourses } from "../controllers/course.js";
+import { getPaidCourses } from "../controllers/skill.js";
 
 const router = express.Router();
 

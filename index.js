@@ -123,14 +123,7 @@ mongoose
     .catch((err) => console.error("MongoDB connection error:", err));
 
 app.get("/test", (req, res) => {
-    res.send("test route");
-    Skills.find({}, (err, data) => {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(data);
-        }
-    });
+    res.send("This is a test route");
 });
 
 // Start the server
